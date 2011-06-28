@@ -1,0 +1,32 @@
+<div id="content">
+  <div id="header">
+    <h1>CRA</h1>
+    <h2>Competition List</h2>
+  </div>
+  <div id="content">
+    <table>
+      <tr>
+        <th>Event</th>
+        <th>Event Type</th>
+        <th>Year</th>
+        <th>Registered Teams</th>
+        <%
+           comps = Competition.find_by_sql("SELECT * FROM competitions ORDER BY year DESC")
+
+           comps.each do
+           |comp|
+        %>
+          <tr>
+            <td><a href="show/<%=comp.id%>"><%=comp.event %></a></td>
+            <td><%= comp.event_subtype %></td>
+            <td><%= comp.year %></td>
+            <td><%= comp.registered_teams %></td>
+          </tr>
+      <%
+         end
+      %>
+    </table>
+  </div>
+  <div id="footer">
+  </div>
+</div>
